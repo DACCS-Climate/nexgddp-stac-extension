@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/DACCS-Climate/nexgddp-stac-extension/v1.0.0/json-schema/schema.json#",
+  "title": "NEX GDDP data STAC Extension",
+  "description": "STAC Extension for NEX GDDP data stored on the Marble Platform.",
+  "oneOf": [
+    {
+      "$comment": "This is the schema for STAC Items. Remove this object if this extension only applies to Collections.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "properties",
+            "assets"
+          ],
+          "properties": {
+            "type": {
+              "const": "Feature"
+            },
+            "properties": {
+              "allOf": [
+                {
+                  "$comment": "Require fields here for Item Properties.",
+                  "required": [
+                    "nexgddp:license",
+                    "nexgddp:version",
+                    "nexgddp:calendar",
+                    "nexgddp:frequency",
+                    "nexgddp:source_id",
+                    "nexgddp:Conventions",
+                    "nexgddp:institution",
+                    "nexgddp:variable_id",
+                    "nexgddp:cmip_version",
+                    "nexgddp:experiment_id",
+                    "nexgddp:variant_label",
+                    "nexgddp:institution_id"
+                    ]
+                },
+                {
+                  "$ref": "#/definitions/fields"
+                }
+              ]
+            },
+            "assets": {
+              "$comment": "This validates the fields in Item Assets, but does not require them.",
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "stac_extensions": {
+      "type": "object",
+      "required": [
+        "stac_extensions"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "https://raw.githubusercontent.com/DACCS-Climate/nexgddp-stac-extension/v1.0.0/json-schema/schema.json"
+          }
+        }
+      }
+    },
+    "require_any_field": {
+      "$comment": "Please list all fields here so that we can force the existence of one of them in other parts of the schemas.",
+      "anyOf": [
+        {"required": ["nexgddp:license"]},
+        {"required": ["nexgddp:version"]},
+        {"required": ["nexgddp:calendar"]},
+        {"required": ["nexgddp:frequency"]},
+        {"required": ["nexgddp:source_id"]},
+        {"required": ["nexgddp:Conventions"]},
+        {"required": ["nexgddp:institution"]},
+        {"required": ["nexgddp:variable_id"]},
+        {"required": ["nexgddp:cmip_version"]},
+        {"required": ["nexgddp:experiment_id"]},
+        {"required": ["nexgddp:variant_label"]},
+        {"required": ["nexgddp:institution_id"]}
+      ]
+    },
+    "fields": {
+      "type": "object",
+      "properties": {
+        "nexgddp:license": {
+          "title": "Data license",
+          "type": "string"
+        },
+        "nexgddp:version": {
+          "title": "Data version",
+          "type": "string"
+        },
+        "nexgddp:calendar": {
+          "title": "Calendar of the data",
+          "type": "string",
+          "enum": ["proleptic_gregorian", "365_day", "360_day", "standard"]
+        },
+        "nexgddp:frequency": {
+          "title": "Temporal frequency of the data",
+          "type": "string",
+          "enum": ["day"]
+        },
+        "nexgddp:source_id": {
+          "title": "Source ID of the CMIP6 model",
+          "type": "string"
+        },
+        "nexgddp:Conventions": {
+          "title": "Data CF convention",
+          "type": "string"
+        },
+        "nexgddp:institution": {
+          "title": "Name of the institution which produced the CMIP6 model",
+          "type": "string"
+        },
+        "nexgddp:variable_id": {
+          "title": "Variable ID of the CMIP6 variable",
+          "type": "string"
+        },
+        "nexgddp:cmip_version": {
+          "title": "Generation of the CMIP project",
+          "type": "string",
+          "enum": ["CMIP5", "CMIP6"]
+        },
+        "nexgddp:experiment_id": {
+          "title": "Experiment ID of the CMIP6 experiment",
+          "type": "string",
+          "enum": ["historical", "ssp126", "ssp245", "ssp370", "ssp585"]
+        },
+        "nexgddp:variant_label": {
+          "title": "String representation of the experiment variant",
+          "type": "string"
+        },
+        "nexgddp:institution_id": {
+          "title": "ID of the institution that created this model",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^(?!nexgddp:)": {
+          "$comment": "Above, change `template` to the prefix of this extension"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
