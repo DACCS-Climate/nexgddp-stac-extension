@@ -1,0 +1,67 @@
+{
+  "stac_version": "1.0.0",
+  "stac_extensions": [
+    "https://raw.githubusercontent.com/DACCS-Climate/nexgddp-stac-extension/v1.0.0/json-schema/schema.json"
+  ],
+  "type": "Feature",
+  "id": "item",
+  "bbox": [
+    172.9,
+    1.3,
+    173,
+    1.4
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          172.9,
+          1.3
+        ],
+        [
+          173,
+          1.3
+        ],
+        [
+          173,
+          1.4
+        ],
+        [
+          172.9,
+          1.4
+        ],
+        [
+          172.9,
+          1.3
+        ]
+      ]
+    ]
+  },
+  "properties": {
+    "datetime": "2020-12-11T22:38:32Z",
+    "nexgddp:license": "CC-BY-SA 4.0",
+    "nexgddp:version": "1.0",
+    "nexgddp:calendar": "360_day",
+    "nexgddp:frequency": "day",
+    "nexgddp:source_id": "UKESM1-0-LL",
+    "nexgddp:Conventions": "CF-1.7",
+    "nexgddp:institution": "NASA Earth Exchange, NASA Ames Research Center, Moffett Field, CA 94035",
+    "nexgddp:variable_id": "tasmin",
+    "nexgddp:cmip_version": "CMIP6",
+    "nexgddp:experiment_id": "ssp585",
+    "nexgddp:variant_label": "r1i1p1f2",
+    "nexgddp:institution_id": "MOHC"
+  },
+  "links": [
+    {
+      "href": "https://example.com/examples/item.json",
+      "rel": "self"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://example.com/examples/file.xyz",
+    }
+  }
+}
